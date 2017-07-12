@@ -116,8 +116,13 @@ map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimr
 nnoremap <leader>. :lcd %:p:h<CR>
 " Organize the vim plugins
 filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'https://github.com/nvie/vim-flake8'
+call vundle#end()
+filetype plugin indent on
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
