@@ -65,7 +65,7 @@ set smartindent
 " Make tabs as wide as two spaces
 set tabstop=2
 " Use spaces instead of tabs
-set expandtab
+" set expandtab
 " Jump to the first non-empty character
 nnoremap 0 ^
 " Automatically re-read changed files

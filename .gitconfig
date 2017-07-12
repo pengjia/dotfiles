@@ -79,6 +79,32 @@
 		fi \
 	}; f"
 
+	diverges = !bash -c 'diff -u <(git rev-list --first-parent "${1}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+	st = status
+	ci = commit
+	cm = commit -m
+	ca = commit --amend
+	br = branch
+	co = checkout
+	df = difftool -t vimdiff -y
+	dc = difftool --cached -t vimdiff -y
+	up = !sh -c 'git pull --rebase --prune && git lol'
+	lg = log --graph --pretty=format:\"%Cred%h %C(bold green)<%an>%Creset - %C(yellow)%s%Creset %Cred%d %Cgreen(%cr)%Creset\"
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lp = log -p
+	ls = ls-files
+	mt = mergetool -y
+	pr = pull --rebase
+	mg = merge --no-ff
+	dfp = diff -U9999999 HEAD~1 HEAD
+	unpushed = log --stat origin/master..HEAD
+	gg = grep --break --heading -n
+	sc = clone --depth=1
+	fc = commit --amend -m
+	ic = add -p
+	diff = diff --word-diff
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
@@ -104,35 +130,10 @@
 	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
-        diverges = !bash -c 'diff -u <(git rev-list --first-parent "${1}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
-        st = status
-        ci = commit
-        cm = commit -m
-        ca = commit --amend
-        br = branch
-        co = checkout
-        df = difftool -t vimdiff -y
-        dc = difftool --cached -t vimdiff -y
-        up = !sh -c 'git pull --rebase --prune && git lol'
-        lg = log --graph --pretty=format:\"%Cred%h %C(bold green)<%an>%Creset - %C(yellow)%s%Creset %Cred%d %Cgreen(%cr)%Creset\"
-        lol = log --graph --decorate --pretty=oneline --abbrev-commit
-        lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-        lp = log -p
-        ls = ls-files
-        mt = mergetool -y
-        pr = pull --rebase
-        mg = merge --no-ff
-        dfp = diff -U9999999 HEAD~1 HEAD
-        unpushed = log --stat origin/master..HEAD
-        gg = grep --break --heading -n
-        sc = clone --depth=1
-        fc = commit --amend -m
-        ic = add -p
-        diff = diff --word-diff
 	dp = diff
 
 [difftool]
-    trustExitCode = true
+	trustExitCode = true
 
 [color]
 
