@@ -1,7 +1,7 @@
 " Use the Solarized Dark theme
 set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+colorscheme torte2
+" let g:solarized_termtrans=1
 
 " Make Vim more useful
 set nocompatible
@@ -36,7 +36,15 @@ set backupskip=/tmp/*,/private/tmp/*
 
 " Respect modeline in files
 set modeline
-set modelines=4
+set modelines=5
+" Try recognizing dos, unix, and mac line endings
+set ffs=unix,dos,mac
+" Don't use a swapfile for the buffer
+set noswapfile
+" Y-N-C prompt if closing with unsaved changes.
+set confirm
+" Show a vertial line in 79th column
+set colorcolumn=80
 " Enable per-directory .vimrc files and disable unsafe commands in them
 set exrc
 set secure
@@ -46,8 +54,22 @@ set number
 syntax on
 " Highlight current line
 set cursorline
+" Don't wrap text
+set nowrap
+" Don't wrap text in the middle of a word
+set linebreak
+" Always set auto indenting on
+set autoindent
+" Use smart indent if there is no indent file
+set smartindent
 " Make tabs as wide as two spaces
 set tabstop=2
+" Use spaces instead of tabs
+set expandtab
+" Jump to the first non-empty character
+nnoremap 0 ^
+" Automatically re-read changed files
+set autoread
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -59,8 +81,9 @@ set ignorecase
 set incsearch
 " Always show status line
 set laststatus=2
+" Let cursor move past the last char in <c-v> mode
 " Enable mouse in all modes
-set mouse=a
+" set mouse=a
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.
@@ -82,6 +105,19 @@ if exists("&relativenumber")
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
+" map the window move keys
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-h> <c-w>h
+map <c-l> <c-w>l
+" map a shortcut for reload .vimrc
+map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+" set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
+" Organize the vim plugins
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
@@ -99,6 +135,10 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 if has("autocmd")
 	" Enable file type detection
 	filetype on
+    autocmd FileType python setlocal completeopt=menuone,longest,preview
+    autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with,from,import,as
+    let g:flake8_cmd = "/usr/local/bin/flake8"
+    autocmd BufWritePost *.py call Flake8()
 	" Treat .json files as .js
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 	" Treat .md files as Markdown
