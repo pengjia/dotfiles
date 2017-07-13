@@ -33,7 +33,12 @@ else
 fi
 
 ###-tns-completion-start-###
-if [ -f /Users/peter/.tnsrc ]; then 
-    source /Users/peter/.tnsrc 
+if [ -f $HOME/.tnsrc ]; then 
+    source $HOME/.tnsrc 
 fi
 ###-tns-completion-end-###
+
+### anaconda
+if [ -f $HOME/.anaconda3/bin/activate ]; then
+    source $HOME/.anaconda3/bin/activate
+fi
