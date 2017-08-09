@@ -42,3 +42,5 @@ fi
 if [ -f $HOME/.anaconda3/bin/activate ]; then
     source $HOME/.anaconda3/bin/activate
 fi
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
+export CUDA_HOME=/usr/local/cuda
