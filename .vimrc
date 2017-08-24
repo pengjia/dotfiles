@@ -65,7 +65,7 @@ set smartindent
 " Make tabs as wide as two spaces
 set tabstop=2
 " Use spaces instead of tabs
-" set expandtab
+set expandtab
 " Jump to the first non-empty character
 nnoremap 0 ^
 " Automatically re-read changed files
@@ -141,7 +141,7 @@ if has("autocmd")
 	" Enable file type detection
 	filetype on
     autocmd FileType python setlocal completeopt=menuone,longest,preview
-    autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with,from,import,as
+    autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent autoindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with,from,import,as
     let g:flake8_cmd = "/usr/local/bin/flake8"
     autocmd BufWritePost *.py call Flake8()
 	" Treat .json files as .js
