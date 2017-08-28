@@ -19,17 +19,19 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    export NVM_DIR=~/.nvm
-    source $NVM_DIR/nvm.sh
-    if [ -f ~/bin ]; then
-        export PATH=~/bin:$PATH
+if [ -f $HOME/.nvm ]; then
+    if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        export NVM_DIR=$HOME/.nvm
+        source $NVM_DIR/nvm.sh
+        if [ -f ~/bin ]; then
+            export PATH=~/bin:$PATH
+        fi
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        export NVM_DIR=$HOME/.nvm
+        source $(brew --prefix nvm)/nvm.sh
+    else
+        # unknown, do nothing
     fi
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    export NVM_DIR=~/.nvm
-    source $(brew --prefix nvm)/nvm.sh
-else
-    # unknown, do nothing
 fi
 
 ###-tns-completion-start-###
@@ -41,6 +43,9 @@ fi
 ### anaconda
 if [ -f $HOME/.anaconda3/bin/activate ]; then
     source $HOME/.anaconda3/bin/activate
+fi
+if [ -f $HOME/anaconda3/bin/activate ]; then
+    source $HOME/anaconda3/bin/activate
 fi
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
 export CUDA_HOME=/usr/local/cuda
