@@ -1,12 +1,10 @@
 " Use the Solarized Dark theme
 set background=dark
-colorscheme torte2
 " let g:solarized_termtrans=1
-
 " Make Vim more useful
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
+" set clipboard=unnamed
 " Enhance command-line completion
 set wildmenu
 " Allow cursor keys in insert mode
@@ -24,6 +22,10 @@ let mapleader=","
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -61,9 +63,10 @@ set linebreak
 " Always set auto indenting on
 set autoindent
 " Use smart indent if there is no indent file
-set smartindent
+" set smartindent
 " Make tabs as wide as two spaces
 set tabstop=2
+set shiftwidth=4
 " Use spaces instead of tabs
 set expandtab
 " Jump to the first non-empty character
@@ -119,10 +122,23 @@ filetype off
 " Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'https://github.com/nvie/vim-flake8'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'jnurmine/Zenburn'
+Plugin 'kien/ctrlp.vim'
+Plugin 'fatih/vim-go'
 call vundle#end()
 filetype plugin indent on
+
+colors zenburn
+
+" Custom definition for YcmCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
@@ -136,12 +152,15 @@ noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
+" Preview the folded doc string
+let g:SimpylFold_docstring_preview=1
+
 " Automatic commands
 if has("autocmd")
 	" Enable file type detection
 	filetype on
     autocmd FileType python setlocal completeopt=menuone,longest,preview
-    autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent autoindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with,from,import,as
+    autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 textwidth=79 fileformat=unix autoindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with,from,import,as
     let g:flake8_cmd = "/usr/local/bin/flake8"
     autocmd BufWritePost *.py call Flake8()
 	" Treat .json files as .js
@@ -149,3 +168,15 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" Python
+let python_highlight_all=1
+syntax on
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
