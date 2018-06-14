@@ -163,6 +163,7 @@ if has("autocmd")
     autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 textwidth=79 fileformat=unix autoindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with,from,import,as
     let g:flake8_cmd = "/usr/local/bin/flake8"
     autocmd BufWritePost *.py call Flake8()
+    autocmd FileType go setlocal expandtab
 	" Treat .json files as .js
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 	" Treat .md files as Markdown
@@ -172,11 +173,3 @@ endif
 " Python
 let python_highlight_all=1
 syntax on
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-EOF
