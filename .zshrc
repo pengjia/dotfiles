@@ -11,23 +11,30 @@ bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
 
-ZSH_THEME="alanpeabody"
+ZSH_THEME="random"
 
-plugins=(git postgres redis-cli celery django fabric docker encode64 supervisor tmux z)
+ZSH_THEME_RANDOM_CANDIDATES=(
+  "robbyrussell"
+  "agnoster"
+  "avit"
+  "bureau"
+  "ys"
+)
+
+plugins=(git git-flow-avh docker tmux z)
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 
-if [ -f $HOME/.nvm ]; then
+if [ -d "$HOME/.nvm" ]; then
+    export NVM_DIR=$HOME/.nvm
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
-        export NVM_DIR=$HOME/.nvm
         source $NVM_DIR/nvm.sh
         if [ -f ~/bin ]; then
             export PATH=~/bin:$PATH
         fi
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        export NVM_DIR=$HOME/.nvm
         source $(brew --prefix nvm)/nvm.sh
     else
         # unknown, do nothing
@@ -49,3 +56,4 @@ if [ -f $HOME/anaconda3/bin/activate ]; then
 fi
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
 export CUDA_HOME=/usr/local/cuda
+export GOPATH="$HOME/code/go"
