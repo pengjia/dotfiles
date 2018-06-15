@@ -11,15 +11,14 @@ bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
 
-ZSH_THEME="random"
+ZSH_THEME="avit"
 
-ZSH_THEME_RANDOM_CANDIDATES=(
-  "robbyrussell"
-  "agnoster"
-  "avit"
-  "bureau"
-  "ys"
-)
+#ZSH_THEME_RANDOM_CANDIDATES=(
+#  "robbyrussell"
+#  "agnoster"
+#  "avit"
+#  "bureau"
+#)
 
 plugins=(git git-flow-avh docker tmux z)
 
@@ -57,3 +56,10 @@ fi
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
 export CUDA_HOME=/usr/local/cuda
 export GOPATH="$HOME/code/go"
+alias kprod="kubectl -n data-prod "
+alias kstag="kubectl -n data-staging "
+alias ktest="kubectl -n data-test "
+alias ksys="kubectl -n kube-system "
+alias king="kubectl -n ingress-nginx "
+alias kmon="kubectl -n monitoring "
+alias kinfra="kubectl -n infra "
