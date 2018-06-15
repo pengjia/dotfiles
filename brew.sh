@@ -93,5 +93,17 @@ brew install tree
 brew install vbindiff
 brew install zopfli
 
+brew cask install betterzip
+brew cask install qlcolorcode 
+brew cask install qlstephen 
+brew cask install qlmarkdown 
+brew cask install quicklook-json 
+brew cask install qlimagesize 
+brew cask install webpquicklook 
+brew cask install suspicious-package 
+brew cask install quicklookase 
+brew cask install qlvideo
+brew cask install provisionql
+
 # Remove outdated versions from the cellar.
 brew cleanup
