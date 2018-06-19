@@ -56,6 +56,7 @@ fi
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
 export CUDA_HOME=/usr/local/cuda
 export GOPATH="$HOME/code/go"
+export PATH=$GOPATH/bin:$PATH
 alias kprod="kubectl -n data-prod "
 alias kstag="kubectl -n data-staging "
 alias ktest="kubectl -n data-test "
