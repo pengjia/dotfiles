@@ -195,6 +195,8 @@ if has("autocmd")
 	filetype on
     autocmd FileType python setlocal completeopt=menuone,longest,preview
     autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 textwidth=79 fileformat=unix autoindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with,from,import,as
+    "let g:syntastic_debug=3
+    let g:syntastic_python_checkers = ['flake8']
     let g:flake8_cmd = "/usr/local/bin/flake8"
     autocmd BufWritePost *.py call Flake8()
     autocmd FileType go setlocal expandtab

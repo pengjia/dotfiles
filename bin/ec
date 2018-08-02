@@ -1,0 +1,21 @@
+#!/bin/bash
+
+
+visible_frames() {
+  emacsclient -a "" -e '(length (visible-frame-list))'
+}
+
+change_focus() {
+  emacsclient -n -e "(select-frame-set-input-focus (selected-frame))" > /dev/null
+}
+
+# try switching to the frame incase it is just minimized
+# will start a server if not running
+test "$(visible_frames)" -eq "1" && change_focus
+
+if [ "$(visible_frames)" -lt  "2" ]; then
+  emacsclient -n -c "$@" && change_focus
+else
+  change_focus
+  test  "$#" -ne "0" && emacsclient -n "$@"
+fi
