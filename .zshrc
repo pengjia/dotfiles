@@ -10,15 +10,7 @@ export SAVEHIST=50000
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
-
 ZSH_THEME="avit"
-
-#ZSH_THEME_RANDOM_CANDIDATES=(
-#  "robbyrussell"
-#  "agnoster"
-#  "avit"
-#  "bureau"
-#)
 
 plugins=(git git-flow-avh docker tmux z)
 
@@ -57,10 +49,15 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
 export CUDA_HOME=/usr/local/cuda
 export GOPATH="$HOME/code/go"
 export PATH=$GOPATH/bin:$PATH
-alias kprod="kubectl -n data-prod "
-alias kstag="kubectl -n data-staging "
-alias ktest="kubectl -n data-test "
-alias ksys="kubectl -n kube-system "
-alias king="kubectl -n ingress-nginx "
-alias kmon="kubectl -n monitoring "
-alias kinfra="kubectl -n infra "
+
+alias kprodbase="kubectl --cluster kubernetes --user admin -n "
+alias kdevbase="kubectl --cluster kubernetes-dev --user dev-admin -n "
+alias kprod="kprodbase data-prod"
+alias kstag="kprodbase data-staging"
+alias kinfra="kprodbase infra"
+alias ksys="kprodbase kube-system"
+alias kmon="kprodbase monitoring"
+alias king="kprodbase ingress-nginx"
+alias kdev="kdevbase data-dev"
+alias ktest="kdevbase data-test"
+
