@@ -50,14 +50,14 @@ export CUDA_HOME=/usr/local/cuda
 export GOPATH="$HOME/code/go"
 export PATH=$GOPATH/bin:$PATH
 
-alias kprodbase="kubectl --cluster kubernetes --user admin -n "
+alias kbaseprod="kubectl --cluster kubernetes --user admin -n "
 alias kdevbase="kubectl --cluster kubernetes-dev --user dev-admin -n "
-alias kprod="kprodbase data-prod"
-alias kstag="kprodbase data-staging"
-alias kinfra="kprodbase infra"
-alias ksys="kprodbase kube-system"
-alias kmon="kprodbase monitoring"
-alias king="kprodbase ingress-nginx"
-alias kdev="kdevbase data-dev"
-alias ktest="kdevbase data-test"
+alias kprod="kbaseprod data-prod"
+alias kstag="kbaseprod data-staging"
+alias kinfra="kbaseprod infra"
+alias ksys="kbaseprod kube-system"
+alias kmon="kbaseprod monitoring"
+alias king="kbaseprod ingress-nginx"
+alias kdev="kbasedev data-dev"
+alias ktest="kbasedev data-test"
 
