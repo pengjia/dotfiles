@@ -51,7 +51,7 @@ export GOPATH="$HOME/code/go"
 export PATH=$GOPATH/bin:$PATH
 
 alias kbaseprod="kubectl --cluster kubernetes --user admin -n "
-alias kdevbase="kubectl --cluster kubernetes-dev --user dev-admin -n "
+alias kbasedev="kubectl --cluster kubernetes-dev --user dev-admin -n "
 alias kprod="kbaseprod data-prod"
 alias kstag="kbaseprod data-staging"
 alias kinfra="kbaseprod infra"
@@ -60,4 +60,5 @@ alias kmon="kbaseprod monitoring"
 alias king="kbaseprod ingress-nginx"
 alias kdev="kbasedev data-dev"
 alias ktest="kbasedev data-test"
-
+alias helmprod="helm --tiller-namespace deploy --kube-context kubernetes"
+alias helmdev="helm --tiller-namespace deploy --kube-context kubernetes-dev"
