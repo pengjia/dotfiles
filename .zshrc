@@ -33,8 +33,8 @@ if [ -d "$HOME/.nvm" ]; then
 fi
 
 ###-tns-completion-start-###
-if [ -f $HOME/.tnsrc ]; then 
-    source $HOME/.tnsrc 
+if [ -f $HOME/.tnsrc ]; then
+    source $HOME/.tnsrc
 fi
 ###-tns-completion-end-###
 
@@ -60,5 +60,5 @@ alias kmon="kbaseprod monitoring"
 alias king="kbaseprod ingress-nginx"
 alias kdev="kbasedev data-dev"
 alias ktest="kbasedev data-test"
-alias helmprod="helm --tiller-namespace deploy --kube-context kubernetes"
-alias helmdev="helm --tiller-namespace deploy --kube-context kubernetes-dev"
+alias hprod="helm --tiller-namespace deploy --kube-context kubernetes"
+alias hdev="helm --tiller-namespace deploy --kube-context kubernetes-dev"
