@@ -16,7 +16,11 @@ plugins=(git git-flow-avh docker tmux z)
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+
 source $ZSH/oh-my-zsh.sh
+if [ -f "~/.extra" ]; then
+	source ~/.extra
+fi
 
 if [ -d "$HOME/.nvm" ]; then
     export NVM_DIR=$HOME/.nvm
