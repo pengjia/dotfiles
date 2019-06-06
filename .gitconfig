@@ -86,8 +86,10 @@
     ca = commit --amend
     br = branch
     co = checkout
-    df = difftool -t vimdiff -y
-    dc = difftool --cached -t vimdiff -y
+#    df = difftool -t vimdiff -y
+#    dc = difftool --cached -t vimdiff -y
+    df = difftool -t ediff -y
+    dc = difftool --cached -t ediff -y
     up = !sh -c 'git pull --rebase --prune && git lol'
     lg = log --graph --pretty=format:\"%Cred%h %C(bold green)<%an>%Creset - %C(yellow)%s%Creset %Cred%d %Cgreen(%cr)%Creset\"
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
