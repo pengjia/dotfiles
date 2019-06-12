@@ -10,7 +10,7 @@ export SAVEHIST=50000
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
-ZSH_THEME="avit"
+ZSH_THEME="michelebologna"
 
 plugins=(git git-flow-avh docker tmux z)
 
@@ -53,9 +53,10 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
 export CUDA_HOME=/usr/local/cuda
 export GOPATH="$HOME/code/go"
 export PATH=$GOPATH/bin:/usr/local/Cellar/perl/5.28.0/bin:$PATH
+export GOPROXY=https://goproxy.io
 
-alias kbaseprod="kubectl --cluster kubernetes --user admin -n "
-alias kbasedev="kubectl --cluster kubernetes-dev --user dev-admin -n "
+alias kbaseprod="kubectl --context kubernetes -n "
+alias kbasedev="kubectl --context kubernetes-dev -n "
 alias kprod="kbaseprod data-prod"
 alias kstag="kbaseprod data-staging"
 alias kinfra="kbaseprod infra"
@@ -66,4 +67,5 @@ alias kdev="kbasedev data-dev"
 alias ktest="kbasedev data-test"
 alias hprod="helm --tiller-namespace deploy --kube-context kubernetes"
 alias hdev="helm --tiller-namespace deploy --kube-context kubernetes-dev"
-alias cnpm="npm --registry=https://registry.npm.taobao.org --cache=$HOME/.npm/.cache/cnpm --disturl=https://npm.taobao.org/dist --userconfig=$HOME/.cnpmrc"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
