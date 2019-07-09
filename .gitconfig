@@ -196,6 +196,10 @@
     log = true
     tool = vimdiff
 
+[mergetool]
+    prompt = true
+    keepBackup = false
+
 [push]
 
     # https://git-scm.com/docs/git-config#git-config-pushdefault
