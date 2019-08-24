@@ -23,6 +23,7 @@ if [ -f "~/.extra" ]; then
 fi
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig/"
 export CUDA_HOME=/usr/local/cuda
 export GOPATH="$HOME/code/go"
 export PATH=$GOPATH/bin:/usr/local/Cellar/perl/5.28.0/bin:$PATH
