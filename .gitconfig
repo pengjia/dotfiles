@@ -88,7 +88,7 @@
     co = checkout
 #    df = difftool -t vimdiff -y
 #    dc = difftool --cached -t vimdiff -y
-    df = difftool -t ediff -y
+    df = difftool -y
     dc = difftool --cached -t ediff -y
     up = !sh -c 'git pull --rebase --prune && git lol'
     lg = log --graph --pretty=format:\"%Cred%h %C(bold green)<%an>%Creset - %C(yellow)%s%Creset %Cred%d %Cgreen(%cr)%Creset\"
@@ -178,7 +178,7 @@
     # Enable an experimental heuristic that shifts the hunk boundary in an
     # attempt to make the resulting patch easier to read.
     indentHeuristic = true
-    tool = vimdiff
+    tool = ediff
 
 [diff "bin"]
 
@@ -198,7 +198,12 @@
 
 [mergetool]
     prompt = true
-    keepBackup = false
+	keepBackup = false
+
+[mergetool.ediff]
+	cmd = ~/bin/ediff $LOCAL $REMOTE $MERGED $BASE
+	trustExitCode = true
+
 
 [push]
 
@@ -206,3 +211,10 @@
     default = simple
     # Make `git push` push relevant annotated tags when pushing branches out.
     followTags = true
+
+[user]
+ 	name = Peter
+ 	email = peter.pengjia@gmail.com
+
+[url "ssh://git@git-pd.megvii-inc.com"]
+     insteadOf = https://git-pd.megvii-inc.com
