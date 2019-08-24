@@ -22,39 +22,13 @@ if [ -f "~/.extra" ]; then
 	source ~/.extra
 fi
 
-if [ -d "$HOME/.nvm" ]; then
-    export NVM_DIR=$HOME/.nvm
-    if [[ "$OSTYPE" == "linux-gnu" ]]; then
-        source $NVM_DIR/nvm.sh
-        if [ -f ~/bin ]; then
-            export PATH=~/bin:$PATH
-        fi
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
-        source $(brew --prefix nvm)/nvm.sh
-    else
-        # unknown, do nothing
-    fi
-fi
-
-###-tns-completion-start-###
-if [ -f $HOME/.tnsrc ]; then
-    source $HOME/.tnsrc
-fi
-###-tns-completion-end-###
-
-### anaconda
-if [ -f $HOME/.anaconda3/bin/activate ]; then
-    source $HOME/.anaconda3/bin/activate
-fi
-if [ -f $HOME/anaconda3/bin/activate ]; then
-    source $HOME/anaconda3/bin/activate
-fi
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
 export CUDA_HOME=/usr/local/cuda
 export GOPATH="$HOME/code/go"
 export PATH=$GOPATH/bin:/usr/local/Cellar/perl/5.28.0/bin:$PATH
 export GOPROXY=https://goproxy.io
 
+alias econda="source $HOME/.anaconda3/bin/activate"
 alias kbaseprod="kubectl --context kubernetes -n "
 alias kbasedev="kubectl --context kubernetes-dev -n "
 alias kprod="kbaseprod data-prod"
