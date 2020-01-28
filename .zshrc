@@ -29,6 +29,8 @@ export GOPATH="$HOME/code/go"
 export PATH=$GOPATH/bin:/usr/local/Cellar/perl/5.28.0/bin:$PATH
 export GOPROXY=https://goproxy.io
 
+alias python=/usr/local/bin/python3
+alias pip=/usr/local/bin/pip3
 alias econda="source $HOME/.anaconda3/bin/activate"
 alias kbaseprod="kubectl --context kubernetes -n "
 alias kbasedev="kubectl --context kubernetes-dev -n "
