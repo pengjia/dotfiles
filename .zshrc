@@ -27,7 +27,4 @@ export GOPATH="$HOME/workspace/go"
 export PATH=$GOPATH/bin:/usr/local/Cellar/perl/5.28.0/bin:$PATH
 export GOPROXY=https://goproxy.io
 
-alias python=/usr/local/bin/python3
-alias pip=/usr/local/bin/pip3
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
