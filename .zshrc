@@ -24,7 +24,7 @@ fi
 
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig/"
 export GOPATH="$HOME/workspace/go"
-export PATH=$GOPATH/bin:/usr/local/opt/openjdk/bin:/usr/local/Cellar/perl/5.28.0/bin:$PATH
+export PATH=$GOPATH/bin:/usr/local/opt/openjdk@13/bin:/usr/local/Cellar/perl/5.28.0/bin:$PATH
 export GOPROXY=https://goproxy.io
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
