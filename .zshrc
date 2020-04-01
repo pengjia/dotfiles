@@ -29,10 +29,14 @@ export GOPROXY=https://goproxy.io
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# nvm
+# nodejs
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
