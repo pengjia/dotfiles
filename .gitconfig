@@ -13,7 +13,7 @@
     di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
     # Pull in remote changes for the current repository and all its submodules
-    p = !"git pull; git submodule foreach git pull origin master"
+    p = pull --recurse-submodules
 
     # Clone a repository including all submodules
     c = clone --recursive
@@ -69,7 +69,7 @@
         declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
         declare branch=\"${2:-$currentBranch}\"; \
         if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-            git fetch origin refs/pull/$2/head:pr/$1 && \
+            git fetch origin refs/pull/$1/head:pr/$1 && \
             git checkout -B $branch && \
             git rebase $branch pr/$1 && \
             git checkout -B $branch && \
@@ -79,6 +79,8 @@
         fi \
     }; f"
 
+    whoami = config.user.email
+
     diverges = !bash -c 'diff -u <(git rev-list --first-parent "${1}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
     st = status
     ci = commit
@@ -86,8 +88,6 @@
     ca = commit --amend
     br = branch
     co = checkout
-#    df = difftool -t vimdiff -y
-#    dc = difftool --cached -t vimdiff -y
     df = difftool -y
     dc = difftool --cached -t ediff -y
     up = !sh -c 'git pull --rebase --prune && git lol'
@@ -216,5 +216,6 @@
  	name = Peter
  	email = peter.pengjia@gmail.com
 
-[url "ssh://git@git-pd.megvii-inc.com"]
-     insteadOf = https://git-pd.megvii-inc.com
+[init]
+
+	templateDir = ~/.config/git/template/
